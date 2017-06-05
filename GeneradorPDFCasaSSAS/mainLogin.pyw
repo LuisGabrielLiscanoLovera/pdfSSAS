@@ -56,13 +56,30 @@ class Ventana(QMainWindow):
         self.dialogo=Dialogo()
         
         self.cadena.textChanged.connect(self.validar_cadena)
+      #  self.boton.clicked.connect(self.validar_formulario)
+
         self.boton.clicked.connect(self.abrirDialogo)
         self.boton.clicked.connect(QCoreApplication.instance().quit)        
         
     def validar_cadena(self):
         cadena=self.cadena.text()
         validar=re.match('^[a-z\]ñ]+$', cadena, re.I)
-        print(cadena)
+        if cadena =="":
+            self.cadena.setStyleSheet("border:1px solid yellow;")
+            return False
+        elif not validar:
+            self.cadena.setStyleSheet("border:1px solid red;")
+            return False
+        else:
+            self.cadena.setStyleSheet("border:1px solid green;")
+            return True
+
+    #def validar_formulario(self):
+     #   if self.validar_nombre():
+      #      print("pass")
+
+
+        #print(cadena)
 
     def abrirDialogo(self):
         #self.dialogo.etiqueta.setText("generandor de reporte asistencia Tecnica")
@@ -87,10 +104,6 @@ class Ventana(QMainWindow):
         #tamaño minimo
         self.setMinimumSize(440,290)
         self.setMaximumSize(440,290)
-
-
-
-
 
 
         #mover la ventana y centrarla en el escritorio
