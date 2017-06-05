@@ -1,3 +1,4 @@
+__author__ = 'Luis Liscano'
 import sys,re
 from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QPushButton
 from PyQt5 import uic #carga el archivo ui del designer

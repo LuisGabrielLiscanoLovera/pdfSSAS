@@ -1,20 +1,31 @@
+__author__ = 'Luis Liscano'
 #coding: utf-8
 from reportlab.pdfgen import canvas
 from reportlab.lib.colors import *
 from reportlab.lib.pagesizes import letter, A4
 from datetime import datetime as t
-from os import startfile
-a=t.now()
 
+a=t.now()
 if (a.month <10):
     b=("0"+str(a.month))
 else:
     b=str(a.month)
-dia="[ "+str(a.day)+"/"+b+"/"+str(a.year)+" ]"
+
+if (a.day <10):
+    d=("0"+str(a.day))
+else:
+    d=str(a.day)
+dia="[ "+d+"/"+b+"/"+str(a.year)+" ]"
+
 min=a.minute
 if (min <10):
     min="0"+str(a.minute)
 hora="[ "+str(a.hour)+":"+str(min)+":"+str(a.second)+" ]"#hora 24H
+
+
+
+
+
 class Base:
     ne=int(input("cuanto esquipos ?"))
     equiposE=range(ne)

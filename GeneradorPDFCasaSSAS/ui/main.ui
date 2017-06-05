@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>logoCASA.png</normaloff>logoCASA.png</iconset>
+    <normaloff>../img/logoCASA.png</normaloff>../img/logoCASA.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QLineEdit,QSpinBox{
@@ -46,6 +46,12 @@ QPushButton{
 
 QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
 		border: 4Px;	}</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>90</width>
+    <height>24</height>
+   </size>
   </property>
   <property name="documentMode">
    <bool>false</bool>

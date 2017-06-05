@@ -1,5 +1,7 @@
-__author__ = 'HICC2'
+__author__ = 'Luis Liscano'
+from os import startfile
 from pdfG import *
+
 if (Base.ne>12):
     N_P=("1/2")
 else:
