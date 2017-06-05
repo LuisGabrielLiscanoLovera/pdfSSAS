@@ -29,8 +29,8 @@ class Base:
     def invocarPdf(self):
       c=canvas.Canvas(self.nombre_archivo)
       def BasePdf():
-        c.drawImage("LM.png", 30, 740, 80, 80,preserveAspectRatio=True)
-        c.drawImage("logoCASA.png", 475, 740, 80, 80,preserveAspectRatio=True)
+        c.drawImage("img/LM.png", 30, 740, 80, 80,preserveAspectRatio=True)
+        c.drawImage("img/logoCASA.png", 475, 740, 80, 80,preserveAspectRatio=True)
         c.setFont('Helvetica',7)
         c.drawString(120,810,"REPÚBLICA BOLIVARIANA DE VENEZUELA MINISTERIO DEL PODER POPULAR PARA ALIMENTACIÓN")
         c.drawString(180,795,"CORPORACIÓN DE ABASTECIMIENTO Y SERVICIOS AGRÍCOLAS")

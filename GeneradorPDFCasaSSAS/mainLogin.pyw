@@ -16,13 +16,13 @@ class Dialogo(QDialog):
 
         self.setWindowTitle("Pdf SSAS")
         self.etiqueta=QLabel(self)
-        uic.loadUi("generandopdf.ui",self)
+        uic.loadUi("ui/generandopdf.ui",self)
         self.setWindowTitle("Servicio Tecnico SSAS ")
 
     def paintEvent(self, event):
         qp = QPainter()
         qp.begin(self)
-        self.drawImage(event, qp, 'dondo.jpg')
+        self.drawImage(event, qp, 'img/fondo.jpg')
     def drawImage(self, event, qp, image):
         pixmap = QPixmap(image)
         qp.drawPixmap(event.rect(), pixmap)
@@ -47,7 +47,7 @@ class Ventana(QMainWindow):
         pixmap = QPixmap()
         label.setPixmap(pixmap)        
         #cargar configuraciones del disigner
-        uic.loadUi("main.ui",self)
+        uic.loadUi("ui/main.ui",self)
         self.cadena.setPlaceholderText("Cadena")
         
         self.setWindowTitle("Generador de Nota Servicio Tecnico SSAS ")
@@ -75,7 +75,7 @@ class Ventana(QMainWindow):
     def paintEvent(self, event):
         qp = QPainter()
         qp.begin(self)
-        self.drawImage(event, qp, 'f.jpeg')
+        self.drawImage(event, qp, 'img/fondo2.jpeg')
     def drawImage(self, event, qp, image):
         pixmap = QPixmap(image)
         qp.drawPixmap(event.rect(), pixmap)

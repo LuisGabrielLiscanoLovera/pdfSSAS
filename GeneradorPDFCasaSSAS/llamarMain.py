@@ -1,5 +1,5 @@
 __author__ = 'HICC2'
-from mega import *
+from pdfG import *
 if (Base.ne>12):
     N_P=("1/2")
 else:
