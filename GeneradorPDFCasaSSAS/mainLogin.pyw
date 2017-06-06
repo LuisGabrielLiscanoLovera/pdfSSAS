@@ -21,6 +21,8 @@ class Dialogo(QDialog):
         self.setMaximumSize(600,600)
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
+        self.textbox = QLineEdit(self)
+
         uic.loadUi("ui/generandopdf.ui",self)
         self.setWindowTitle("Servicio Tecnico SSAS ")
 
@@ -107,9 +109,15 @@ class Ventana(QMainWindow):
         print(self.validar_cadena())
 
         if self.validar_cadena():
-            self.dialogo.etiquetaS.setText("Dialogo abierto desde la ventana principal")
+            seriales=range(self.validar_cantidadE())
+            for i in seriales:
+                print(i)
 
+
+            self.dialogo.textbox.move(20,20)
+            self.dialogo.textbox.resize(280,40)
             self.dialogo.exec_()
+
         else:
             QMessageBox.warning(self,"Ingrese datos Valido","Validacion incorrecta", QMessageBox.Discard)
 
