@@ -22,20 +22,22 @@ if (min <10):
     min="0"+str(a.minute)
 hora="[ "+str(a.hour)+":"+str(min)+":"+str(a.second)+" ]"#hora 24H
 
-
-
-
-
 class Base:
-    ne=int(input("cuanto esquipos ?"))
-    equiposE=range(ne)
-    def __init__(self,nombreA,np,ne,h,d):
+    #ne=int(input("cuanto esquipos ?"))
+    ne=0
+    equiposE=0
+
+    def __init__(self,nombreA,np,ne,h,d,cadena,serialU):
         #self.color=cl
+
         self.nombre_archivo=nombreA
         self.N_P=np
         self.N_E=ne
         self.hora=h
         self.dia=d
+        self.cadena=cadena
+        self.serialU=serialU
+
 
     def invocarPdf(self):
       c=canvas.Canvas(self.nombre_archivo)
@@ -54,14 +56,14 @@ class Base:
         c.setFont('Helvetica',12)
         c.rect(360,682,220,30)
         c.drawString(365,686,"Fecha de Elaboración:      "+self.dia)#***************finish
-        c.drawString(365,700,"Número de Control:   "+str(a.year)+b+str(a.day)+"-ST-")#<------------------------------------------------fata
+        c.drawString(365,700,"Número de Control:   "+str(a.year)+b+d+"-ST-")#<------------------------------------------------fata
         c.setFont('Helvetica',9)
         c.drawString(540,673,"PAG  "+self.N_P)#<------------------------------------------------fata
         #-----------------------------------------------------------------------------------------------------------------------
                                                 #codigo de cadena
         c.setFont('Helvetica',10)
         c.drawString(30,705,"Código: PRI-00032")#<------------------------------------------------fata
-        c.drawString(30,690,"Cadena: FARMATODO")#<------------------------------------------------fata
+        c.drawString(30,690,"Cadena: "+self.cadena)#<------------------------------------------------fata
         #------------------------------------------------------------------------------------------------------------
                                                # lines and rect
         c.setFillColor(gray)
@@ -186,10 +188,9 @@ class Base:
        c.line(30,595-i,580,595-i)
        c.drawString(35,598-i,""+str(round((i/15)+1)))
        c.drawString(60,598-i,"HICC")
-       c.drawString(102,598-i,"GWRHICC0000"+input("serial 1:"))
-       '''if (ne>12):
-         self.N_E=str(round(i/15)+1)
-         print(self.N_E)'''
+       #c.drawString(102,598-i,"GWRHICC0000"+input("serial 1:"))
+
+       c.drawString(102,598-i,self.serialU)
        if (i==165):
          break
       if (self.ne>12):
@@ -200,7 +201,9 @@ class Base:
         if(i>165):
           c.setFont("Helvetica",10)
           c.line(30,775-i,580,775-i)
-          c.drawString(102,780-i,"GWRHICC0000"+input("serial 2:"))
+
+        #  c.drawString(102,780-i,"GWRHICC0000"+input("serial 2:"))
+          c.drawString(102,780-i,self.serialU)
           c.drawString(60,780-i,"HICC")
           c.drawString(35,780-i,""+str(round((i/15)+1)))
           #self.N_E=str(round(i/15)-11)

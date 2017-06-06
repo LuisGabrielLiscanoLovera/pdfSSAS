@@ -1,10 +1,15 @@
 __author__ = 'Luis Liscano'
 import sys,re
-from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QPushButton
+from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QMessageBox,QLineEdit
 from PyQt5 import uic #carga el archivo ui del designer
 from PyQt5.QtGui import QFont#el tipo de fuente
-from PyQt5.QtCore import Qt,QRect, QCoreApplication
+from PyQt5.QtCore import Qt,QRect,QCoreApplication
 from PyQt5.QtGui import QPainter ,QPixmap
+
+from os import startfile
+from pdfG import *
+
+
 
 #import ctypes #getSystemnMetrics
 
@@ -14,11 +19,15 @@ class Dialogo(QDialog):
         self.resize(600,600)
         self.setMinimumSize(600,600)
         self.setMaximumSize(600,600)
-
         self.setWindowTitle("Pdf SSAS")
-        self.etiqueta=QLabel(self)
+        self.etiquetaS=QLabel(self)
         uic.loadUi("ui/generandopdf.ui",self)
         self.setWindowTitle("Servicio Tecnico SSAS ")
+
+
+        '''boton = QPushButton("Button 1", self)
+        boton.resize(150, 40)
+        boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)'''
 
     def paintEvent(self, event):
         qp = QPainter()
@@ -28,12 +37,10 @@ class Dialogo(QDialog):
         pixmap = QPixmap(image)
         qp.drawPixmap(event.rect(), pixmap)
         qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
-      
-        
-        #boton = QPushButton("Button 1", self)
-        #boton1.resize(150, 40)
-        #btn1.move(400 / 2 - 150 / 2, 200 / 2 - 40)
+
+
         self.boton2.clicked.connect(self.buttonClicked)
+
 
     def buttonClicked(self):
         print ("Estoy aqui")
@@ -54,16 +61,18 @@ class Ventana(QMainWindow):
         self.setWindowTitle("Generador de Nota Servicio Tecnico SSAS ")
         self.resize(440,290)
         self.dialogo=Dialogo()
-        
+        self.cantidadE.valueChanged.connect(self.validar_cantidadE)
         self.cadena.textChanged.connect(self.validar_cadena)
-      #  self.boton.clicked.connect(self.validar_formulario)
 
-        self.boton.clicked.connect(self.abrirDialogo)
-        self.boton.clicked.connect(QCoreApplication.instance().quit)        
-        
+        self.boton.clicked.connect(self.capturarValores )
+        self.boton.clicked.connect(QCoreApplication.instance().quit)
+
+
+
     def validar_cadena(self):
         cadena=self.cadena.text()
         validar=re.match('^[a-z\]ñ]+$', cadena, re.I)
+        #validar=re.match('^[farmatodo,unicasa\]ñ]+$', cadena, re.I)
         if cadena =="":
             self.cadena.setStyleSheet("border:1px solid yellow;")
             return False
@@ -72,23 +81,44 @@ class Ventana(QMainWindow):
             return False
         else:
             self.cadena.setStyleSheet("border:1px solid green;")
-            return True
+            return True and cadena
 
-    #def validar_formulario(self):
-     #   if self.validar_nombre():
-      #      print("pass")
+    def validar_cantidadE(self):
+        cantidadE=self.cantidadE.value()
+        return cantidadE
+
+    def capturarValores(self):
+
+        '''serialU="desarrollo"
+        ce=(self.validar_cantidadE())
+        cadena=self.validar_cadena()
+        Base.equiposE=range(ce)
+        Base.ne=ce
+        if (Base.ne>12):
+            N_P=("1/2")
+        else:
+            N_P=("1/1")
+        nombre_archivo=(str(a.year)+b+str(a.day)+"-ST-001"+".pdf")
+        dos=Base(nombre_archivo,N_P,str(Base.ne),hora,dia,cadena,serialU)
+        dos.invocarPdf()
+        startfile(nombre_archivo)
+        '''
+        print (self.validar_cantidadE())
+        print(self.validar_cadena())
+
+        if self.validar_cadena():
+            self.dialogo.etiquetaS.setText("Dialogo abierto desde la ventana principal")
+
+            self.dialogo.exec_()
+        else:
+            QMessageBox.warning(self,"Ingrese datos Valido","Validacion incorrecta", QMessageBox.Discard)
 
 
-        #print(cadena)
 
-    def abrirDialogo(self):
-        #self.dialogo.etiqueta.setText("generandor de reporte asistencia Tecnica")
-        print("desde dialogo")
-        self.dialogo.exec_()
-    """def validar_cantidad_equipo(self):
-        cantidadE2 = self.validar_cantidad_equipo.text()
-        validar=re.match('^[a-z\]ñ]+$', cantidadE2, re.I)
-        return print (self.cantidadE2)"""
+
+
+
+
 
     def paintEvent(self, event):
         qp = QPainter()
@@ -97,7 +127,7 @@ class Ventana(QMainWindow):
     def drawImage(self, event, qp, image):
         pixmap = QPixmap(image)
         qp.drawPixmap(event.rect(), pixmap)
-        #qp.drawPixmap(QRect(90,90, 175,175), pixmap)        
+        #qp.drawPixmap(QRect(90,90, 175,175), pixmap)
         #mostrar la ventana maximizada
         #self.showMaximized()
         #fijar el tamaño de la ventana
