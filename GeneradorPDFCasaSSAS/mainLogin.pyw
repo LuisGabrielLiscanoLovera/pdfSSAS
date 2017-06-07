@@ -16,9 +16,9 @@ from pdfG import *
 class Dialogo(QDialog):
     def __init__(self):
         QDialog.__init__(self)
-        self.resize(80,60)
-        #self.setMinimumSize(600,600)
-        #self.setMaximumSize(600,600)
+        self.resize(600,600)
+        self.setMinimumSize(600,600)
+        self.setMaximumSize(600,600)
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
         #self.textbox = QLineEdit(self)
@@ -57,7 +57,9 @@ class Ventana(QMainWindow):
         #self.salir.move(0,50)
 
         self.setWindowTitle("Generador de Nota Servicio Tecnico SSAS ")
-        self.resize(440,290)
+        self.resize(420,315)
+        self.setMinimumSize(420,315)
+        self.setMaximumSize(420,315)
         self.dialogo=Dialogo()
         self.cantidadE.valueChanged.connect(self.validar_cantidadE)
         self.cadena.textChanged.connect(self.validar_cadena)
@@ -74,7 +76,7 @@ class Ventana(QMainWindow):
     def validar_cadena(self):
         cadena=self.cadena.text()
         validar=re.match('^[a-z\]ñ]+$', cadena, re.I)
-        #validar=re.match('^[farmatodo,unicasa\]ñ]+$', cadena, re.I)
+
         if cadena =="":
             self.cadena.setStyleSheet("border:1px solid yellow;")
             return False
@@ -110,20 +112,19 @@ class Ventana(QMainWindow):
 
         if self.validar_cadena():
             seriales=range(self.validar_cantidadE())
-            self.dialogo.acomodo =QVBoxLayout(self)
-            #self.dialogo.acomodo.alignment(self)
+
 
 
             for i in seriales:
 
                 self.dialogo.i=QLineEdit(self.dialogo)
-                #self.dialogo.i.move(100,25*i)
-                self.dialogo.i.resize(60,60)
+                self.dialogo.i.move(10,25*i)
+                #self.dialogo.i.resize(30,30)
                 self.dialogo.i.setPlaceholderText("serial: "+str(1+i))
-                self.dialogo.acomodo.addWidget(self.dialogo.i)
 
 
-            self.dialogo.setLayout(self.dialogo.acomodo)
+
+
             self.dialogo.exec_()
 
 
@@ -146,8 +147,7 @@ class Ventana(QMainWindow):
         #self.showMaximized()
         #fijar el tamaño de la ventana
         #tamaño minimo
-        self.setMinimumSize(440,290)
-        self.setMaximumSize(440,290)
+
 
 
 

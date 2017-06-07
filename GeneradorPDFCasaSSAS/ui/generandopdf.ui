@@ -20,11 +20,24 @@
   <widget class="QPushButton" name="boton2">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>560</y>
-     <width>91</width>
-     <height>23</height>
+     <x>280</x>
+     <y>270</y>
+     <width>141</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+		background-color:#A69306;
+		border-radius: 4px;
+		border: 4Px;		
+		color: #fff;
+		font-family: 'Roboto';
+		font-size: 17px;
+	}
+
+QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
+		border: 4Px;	}</string>
    </property>
    <property name="text">
     <string>Generar reporte</string>
