@@ -1,8 +1,8 @@
 __author__ = 'Luis Liscano'
 import sys,re
-from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QMessageBox,QLineEdit
+from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QMessageBox,QLineEdit,QPushButton
 from PyQt5 import uic #carga el archivo ui del designer
-from PyQt5.QtGui import QFont#el tipo de fuente
+from PyQt5.QtGui import QFont,QIcon#el tipo de fuente
 from PyQt5.QtCore import Qt,QRect,QCoreApplication
 from PyQt5.QtGui import QPainter ,QPixmap
 
@@ -13,7 +13,7 @@ from pdfG import *
 
 #import ctypes #getSystemnMetrics
 
-class Dialogo(QDialog):
+class d1(QDialog):
     def __init__(self):
         QDialog.__init__(self)
         self.resize(600,600)
@@ -22,15 +22,11 @@ class Dialogo(QDialog):
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
         self.textbox = QLineEdit(self)
-
         uic.loadUi("ui/generandopdf.ui",self)
-        self.setWindowTitle("Servicio Tecnico SSAS ")
-
-
-        '''boton = QPushButton("Button 1", self)
-        boton.resize(150, 40)
-        boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)'''
-
+        self.setWindowTitle("Servicio Tecnico SSAS 1")
+        """self.boton = QPushButton("soy el dialogo 1", self)
+        self.boton.resize(150, 40)
+        self.boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)"""
     def paintEvent(self, event):
         qp = QPainter()
         qp.begin(self)
@@ -39,13 +35,79 @@ class Dialogo(QDialog):
         pixmap = QPixmap(image)
         qp.drawPixmap(event.rect(), pixmap)
         qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
-
-
         self.boton2.clicked.connect(self.buttonClicked)
+    def buttonClicked(self):
+        print ("Estoy aqui")
 
+
+
+
+
+
+
+
+class d2(QDialog):
+    def __init__(self):
+        QDialog.__init__(self)
+        self.resize(600,600)
+        self.setMinimumSize(600,600)
+        self.setMaximumSize(600,600)
+        self.setWindowTitle("Pdf SSAS")
+        self.etiquetaS=QLabel(self)
+        self.textbox = QLineEdit(self)
+        uic.loadUi("ui/generandopdf.ui",self)
+        self.setWindowTitle("Servicio Tecnico SSAS 2")
+        """self.boton = QPushButton("soy el dialogo 2", self)
+        self.boton.resize(150, 40)
+        self.boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)"""
+    def paintEvent(self, event):
+        qp = QPainter()
+        qp.begin(self)
+        self.drawImage(event, qp, 'img/fondo.jpg')
+    def drawImage(self, event, qp, image):
+        pixmap = QPixmap(image)
+        qp.drawPixmap(event.rect(), pixmap)
+        qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
+        self.boton2.clicked.connect(self.buttonClicked)
 
     def buttonClicked(self):
         print ("Estoy aqui")
+
+
+
+class d2(QDialog):
+    def __init__(self):
+        QDialog.__init__(self)
+        self.resize(600,600)
+        self.setMinimumSize(600,600)
+        self.setMaximumSize(600,600)
+        self.setWindowTitle("Pdf SSAS")
+        self.etiquetaS=QLabel(self)
+        self.textbox = QLineEdit(self)
+        uic.loadUi("ui/generandopdf.ui",self)
+        self.setWindowTitle("Servicio Tecnico SSAS 3")
+        """self.boton = QPushButton("soy el dialogo 2", self)
+        self.boton.resize(150, 40)
+        self.boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)"""
+    def paintEvent(self, event):
+        qp = QPainter()
+        qp.begin(self)
+        self.drawImage(event, qp, 'img/fondo.jpg')
+    def drawImage(self, event, qp, image):
+        pixmap = QPixmap(image)
+        qp.drawPixmap(event.rect(), pixmap)
+        qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
+        self.boton2.clicked.connect(self.buttonClicked)
+    def buttonClicked(self):
+        print ("Estoy aqui")
+
+
+
+
+
+
+
+
 
 #class constructor de ventanas
 class Ventana(QMainWindow):
@@ -59,15 +121,25 @@ class Ventana(QMainWindow):
         #cargar configuraciones del disigner
         uic.loadUi("ui/main.ui",self)
         self.cadena.setPlaceholderText("Cadena")
-        
+        self.setWindowIcon(QIcon("img/logoCasa.png"))
+
+        #self.salir=QPushButton("salir",self)
+        #self.salir.move(0,50)
+
         self.setWindowTitle("Generador de Nota Servicio Tecnico SSAS ")
         self.resize(440,290)
-        self.dialogo=Dialogo()
+        self.d1=d1()
+        self.d2=d2()
+
         self.cantidadE.valueChanged.connect(self.validar_cantidadE)
         self.cadena.textChanged.connect(self.validar_cadena)
 
+        #self.salir.clicked.connect(self.close)
+
         self.boton.clicked.connect(self.capturarValores )
-        self.boton.clicked.connect(QCoreApplication.instance().quit)
+        #self.boton.clicked.connect(QCoreApplication.instance().quit)
+
+
 
 
 
@@ -109,17 +181,15 @@ class Ventana(QMainWindow):
         print(self.validar_cadena())
 
         if self.validar_cadena():
-            seriales=range(self.validar_cantidadE())
-            for i in seriales:
-                print(i)
-
-
-            self.dialogo.textbox.move(20,20)
-            self.dialogo.textbox.resize(280,40)
-            self.dialogo.exec_()
+            if self.validar_cantidadE()==1:
+                self.d1.exec_()
+            if self.validar_cantidadE()==2:
+                self.d2.exec_()
+            if self.validar_cantidadE()==3:
+                self.d2.exec_()
 
         else:
-            QMessageBox.warning(self,"Ingrese datos Valido","Validacion incorrecta", QMessageBox.Discard)
+            QMessageBox.warning(self,"Ingrese datos Validppo","Validacion incorrectaaaa", QMessageBox.Discard)
 
 
 
@@ -142,6 +212,7 @@ class Ventana(QMainWindow):
         #tamaño minimo
         self.setMinimumSize(440,290)
         self.setMaximumSize(440,290)
+
 
 
         #mover la ventana y centrarla en el escritorio
@@ -168,7 +239,7 @@ class Ventana(QMainWindow):
      
         
         
-        
+
         
 #Instancia para iniciar la app
 app=QApplication(sys.argv)
