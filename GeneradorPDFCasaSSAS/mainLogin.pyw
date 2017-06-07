@@ -1,6 +1,6 @@
 __author__ = 'Luis Liscano'
 import sys,re
-from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QMessageBox,QLineEdit,QPushButton
+from PyQt5.QtWidgets import QApplication,QMainWindow,QLabel,QDialog,QMessageBox,QLineEdit,QPushButton, QVBoxLayout
 from PyQt5 import uic #carga el archivo ui del designer
 from PyQt5.QtGui import QFont,QIcon#el tipo de fuente
 from PyQt5.QtCore import Qt,QRect,QCoreApplication
@@ -16,9 +16,9 @@ from pdfG import *
 class Dialogo(QDialog):
     def __init__(self):
         QDialog.__init__(self)
-        self.resize(600,600)
-        self.setMinimumSize(600,600)
-        self.setMaximumSize(600,600)
+        self.resize(80,60)
+        #self.setMinimumSize(600,600)
+        #self.setMaximumSize(600,600)
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
         #self.textbox = QLineEdit(self)
@@ -65,7 +65,7 @@ class Ventana(QMainWindow):
         #self.salir.clicked.connect(self.close)
 
         self.boton.clicked.connect(self.capturarValores )
-        #self.boton.clicked.connect(QCoreApplication.instance().quit)
+        self.boton.clicked.connect(QCoreApplication.instance().quit)
 
 
 
@@ -110,15 +110,20 @@ class Ventana(QMainWindow):
 
         if self.validar_cadena():
             seriales=range(self.validar_cantidadE())
-#
+            self.dialogo.acomodo =QVBoxLayout(self)
+            #self.dialogo.acomodo.alignment(self)
+
 
             for i in seriales:
+
                 self.dialogo.i=QLineEdit(self.dialogo)
-                self.dialogo.i.move(10,30*i)
-                self.dialogo.i.setPlaceholderText("serial: ")
+                #self.dialogo.i.move(100,25*i)
+                self.dialogo.i.resize(60,60)
+                self.dialogo.i.setPlaceholderText("serial: "+str(1+i))
+                self.dialogo.acomodo.addWidget(self.dialogo.i)
 
 
-
+            self.dialogo.setLayout(self.dialogo.acomodo)
             self.dialogo.exec_()
 
 
