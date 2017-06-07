@@ -13,7 +13,7 @@ from pdfG import *
 
 #import ctypes #getSystemnMetrics
 
-class d1(QDialog):
+class Dialogo(QDialog):
     def __init__(self):
         QDialog.__init__(self)
         self.resize(600,600)
@@ -21,7 +21,7 @@ class d1(QDialog):
         self.setMaximumSize(600,600)
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
-        self.textbox = QLineEdit(self)
+        #self.textbox = QLineEdit(self)
         uic.loadUi("ui/generandopdf.ui",self)
         self.setWindowTitle("Servicio Tecnico SSAS 1")
         """self.boton = QPushButton("soy el dialogo 1", self)
@@ -37,78 +37,8 @@ class d1(QDialog):
         qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
         self.boton2.clicked.connect(self.buttonClicked)
     def buttonClicked(self):
+
         print ("Estoy aqui")
-
-
-
-
-
-
-
-
-class d2(QDialog):
-    def __init__(self):
-        QDialog.__init__(self)
-        self.resize(600,600)
-        self.setMinimumSize(600,600)
-        self.setMaximumSize(600,600)
-        self.setWindowTitle("Pdf SSAS")
-        self.etiquetaS=QLabel(self)
-        self.textbox = QLineEdit(self)
-        uic.loadUi("ui/generandopdf.ui",self)
-        self.setWindowTitle("Servicio Tecnico SSAS 2")
-        """self.boton = QPushButton("soy el dialogo 2", self)
-        self.boton.resize(150, 40)
-        self.boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)"""
-    def paintEvent(self, event):
-        qp = QPainter()
-        qp.begin(self)
-        self.drawImage(event, qp, 'img/fondo.jpg')
-    def drawImage(self, event, qp, image):
-        pixmap = QPixmap(image)
-        qp.drawPixmap(event.rect(), pixmap)
-        qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
-        self.boton2.clicked.connect(self.buttonClicked)
-
-    def buttonClicked(self):
-        print ("Estoy aqui")
-
-
-
-class d2(QDialog):
-    def __init__(self):
-        QDialog.__init__(self)
-        self.resize(600,600)
-        self.setMinimumSize(600,600)
-        self.setMaximumSize(600,600)
-        self.setWindowTitle("Pdf SSAS")
-        self.etiquetaS=QLabel(self)
-        self.textbox = QLineEdit(self)
-        uic.loadUi("ui/generandopdf.ui",self)
-        self.setWindowTitle("Servicio Tecnico SSAS 3")
-        """self.boton = QPushButton("soy el dialogo 2", self)
-        self.boton.resize(150, 40)
-        self.boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)"""
-    def paintEvent(self, event):
-        qp = QPainter()
-        qp.begin(self)
-        self.drawImage(event, qp, 'img/fondo.jpg')
-    def drawImage(self, event, qp, image):
-        pixmap = QPixmap(image)
-        qp.drawPixmap(event.rect(), pixmap)
-        qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
-        self.boton2.clicked.connect(self.buttonClicked)
-    def buttonClicked(self):
-        print ("Estoy aqui")
-
-
-
-
-
-
-
-
-
 #class constructor de ventanas
 class Ventana(QMainWindow):
     #metodo constructor
@@ -128,9 +58,7 @@ class Ventana(QMainWindow):
 
         self.setWindowTitle("Generador de Nota Servicio Tecnico SSAS ")
         self.resize(440,290)
-        self.d1=d1()
-        self.d2=d2()
-
+        self.dialogo=Dialogo()
         self.cantidadE.valueChanged.connect(self.validar_cantidadE)
         self.cadena.textChanged.connect(self.validar_cadena)
 
@@ -181,22 +109,25 @@ class Ventana(QMainWindow):
         print(self.validar_cadena())
 
         if self.validar_cadena():
-            if self.validar_cantidadE()==1:
-                self.d1.exec_()
-            if self.validar_cantidadE()==2:
-                self.d2.exec_()
-            if self.validar_cantidadE()==3:
-                self.d2.exec_()
+            seriales=range(self.validar_cantidadE())
+#
+
+            for i in seriales:
+                self.dialogo.i=QLineEdit(self.dialogo)
+                self.dialogo.i.move(10,30*i)
+                self.dialogo.i.setPlaceholderText("serial: ")
+
+
+
+            self.dialogo.exec_()
+
+
+
+
+
 
         else:
             QMessageBox.warning(self,"Ingrese datos Validppo","Validacion incorrectaaaa", QMessageBox.Discard)
-
-
-
-
-
-
-
 
     def paintEvent(self, event):
         qp = QPainter()
