@@ -16,9 +16,9 @@ from pdfG import *
 class Dialogo(QDialog):
     def __init__(self):
         QDialog.__init__(self)
-        self.resize(600,600)
-        self.setMinimumSize(600,600)
-        self.setMaximumSize(600,600)
+        self.resize(600/2,600)
+        self.setMinimumSize(600/2,600)
+        self.setMaximumSize(600/2,600)
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
         #self.textbox = QLineEdit(self)
@@ -75,7 +75,7 @@ class Ventana(QMainWindow):
 
     def validar_cadena(self):
         cadena=self.cadena.text()
-        validar=re.match('^[a-z\]ñ]+$', cadena, re.I)
+        validar=re.match('^[a-z \]ñ]+$', cadena, re.I)
 
         if cadena =="":
             self.cadena.setStyleSheet("border:1px solid yellow;")
@@ -114,16 +114,14 @@ class Ventana(QMainWindow):
             seriales=range(self.validar_cantidadE())
 
 
-
+            self.dialogo.maxserial=5
             for i in seriales:
 
                 self.dialogo.i=QLineEdit(self.dialogo)
                 self.dialogo.i.move(10,25*i)
-                #self.dialogo.i.resize(30,30)
+                self.dialogo.i.resize(130,30)
                 self.dialogo.i.setPlaceholderText("serial: "+str(1+i))
-
-
-
+                self.dialogo.i.setMaxLength(16)
 
             self.dialogo.exec_()
 
