@@ -16,9 +16,9 @@ from pdfG import *
 class Dialogo(QDialog):
     def __init__(self):
         QDialog.__init__(self)
-        self.resize(600/2,600)
-        self.setMinimumSize(600/2,600)
-        self.setMaximumSize(600/2,600)
+        #self.resize(600/2,600)
+        #self.setMinimumSize(600/2,600)
+        #self.setMaximumSize(600/2,600)
         self.setWindowTitle("Pdf SSAS")
         self.etiquetaS=QLabel(self)
         #self.textbox = QLineEdit(self)
@@ -27,6 +27,9 @@ class Dialogo(QDialog):
         """self.boton = QPushButton("soy el dialogo 1", self)
         self.boton.resize(150, 40)
         self.boton.move(400 / 2 - 150 / 2, 200 / 2 - 40)"""
+        self.boton2.clicked.connect(self.buttonClicked)
+
+
     def paintEvent(self, event):
         qp = QPainter()
         qp.begin(self)
@@ -35,10 +38,28 @@ class Dialogo(QDialog):
         pixmap = QPixmap(image)
         qp.drawPixmap(event.rect(), pixmap)
         qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
-        self.boton2.clicked.connect(self.buttonClicked)
-    def buttonClicked(self):
 
-        print ("Estoy aqui")
+
+
+    def buttonClicked(self):
+        print(self.ct)
+        print (self.i.text())
+
+
+
+
+      # C_seriales=range(self.ct)
+        #print(self.i.text())
+
+
+
+
+        """for i in seriales:
+            print(self.i.text())"""
+
+
+
+
 #class constructor de ventanas
 class Ventana(QMainWindow):
     #metodo constructor
@@ -67,7 +88,7 @@ class Ventana(QMainWindow):
         #self.salir.clicked.connect(self.close)
 
         self.boton.clicked.connect(self.capturarValores )
-        self.boton.clicked.connect(QCoreApplication.instance().quit)
+        #self.boton.clicked.connect(QCoreApplication.instance().quit)
 
 
 
@@ -76,7 +97,6 @@ class Ventana(QMainWindow):
     def validar_cadena(self):
         cadena=self.cadena.text()
         validar=re.match('^[a-z \]ñ]+$', cadena, re.I)
-
         if cadena =="":
             self.cadena.setStyleSheet("border:1px solid yellow;")
             return False
@@ -92,6 +112,34 @@ class Ventana(QMainWindow):
         return cantidadE
 
     def capturarValores(self):
+        #print(self.cadena.text())
+        #print(self.cadena2.text())
+        #print(self.cadena3.text())
+        #print(self.cadena4.text())
+        #print(self.cadena5.text())
+
+        if self.validar_cadena():
+            seriales=range(self.validar_cantidadE())
+            self.dialogo.resize(600/2,650)
+
+
+
+            for i in seriales:
+                i+=1
+                self.dialogo.i=QLineEdit(self.dialogo)
+                self.dialogo.i.move(15,25*i)
+                self.dialogo.i.resize(130,30)
+                self.dialogo.i.setPlaceholderText("serial: "+str(i))
+                self.dialogo.i.setMaxLength(16)
+
+
+
+            self.dialogo.ct=i
+            self.dialogo.exec_()
+
+
+        else:
+            QMessageBox.warning(self,"Ingrese datos Valido","Validacion incorrecta", QMessageBox.Discard)
 
         '''serialU="desarrollo"
         ce=(self.validar_cantidadE())
@@ -107,31 +155,13 @@ class Ventana(QMainWindow):
         dos.invocarPdf()
         startfile(nombre_archivo)
         '''
-        print (self.validar_cantidadE())
-        print(self.validar_cadena())
-
-        if self.validar_cadena():
-            seriales=range(self.validar_cantidadE())
-
-
-            self.dialogo.maxserial=5
-            for i in seriales:
-
-                self.dialogo.i=QLineEdit(self.dialogo)
-                self.dialogo.i.move(10,25*i)
-                self.dialogo.i.resize(130,30)
-                self.dialogo.i.setPlaceholderText("serial: "+str(1+i))
-                self.dialogo.i.setMaxLength(16)
-
-            self.dialogo.exec_()
+        #print (self.validar_cantidadE())
+       # print(self.validar_cadena())
 
 
 
 
 
-
-        else:
-            QMessageBox.warning(self,"Ingrese datos Validppo","Validacion incorrectaaaa", QMessageBox.Discard)
 
     def paintEvent(self, event):
         qp = QPainter()

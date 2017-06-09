@@ -180,7 +180,7 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="cadena2">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
@@ -190,17 +190,7 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLineEdit" name="lineEdit_4">
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="placeholderText">
-        <string extracomment="CI"/>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="cadena3">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
@@ -209,13 +199,23 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QLineEdit" name="lineEdit_3">
+     <item row="3" column="0">
+      <widget class="QLineEdit" name="cadena4">
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
        <property name="placeholderText">
         <string extracomment="resivido"/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLineEdit" name="cadena5">
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string extracomment="CI"/>
        </property>
       </widget>
      </item>
