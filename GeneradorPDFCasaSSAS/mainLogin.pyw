@@ -43,7 +43,14 @@ class Dialogo(QDialog):
 
     def buttonClicked(self):
         print(self.ct)
-        print (self.i.text())
+        #print(self.lista)
+
+
+        #newL=[1,2,3,4,5,6,7]
+        #for i in newL:
+        #    newL.append(66)
+
+        #print (self.i.text())
 
 
 
@@ -126,14 +133,19 @@ class Ventana(QMainWindow):
 
             for i in seriales:
                 i+=1
+                self.dialogo.lista = []
                 self.dialogo.i=QLineEdit(self.dialogo)
                 self.dialogo.i.move(15,25*i)
                 self.dialogo.i.resize(130,30)
                 self.dialogo.i.setPlaceholderText("serial: "+str(i))
                 self.dialogo.i.setMaxLength(16)
+                #print(self.dialogo.i)
+                self.dialogo.lista.append(self.dialogo.i)
+                print(self.dialogo.lista)
 
 
 
+            print(self.dialogo.lista)
             self.dialogo.ct=i
             self.dialogo.exec_()
 
