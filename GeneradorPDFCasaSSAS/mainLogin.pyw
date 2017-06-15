@@ -39,30 +39,33 @@ class Dialogo(QDialog):
         qp.drawPixmap(event.rect(), pixmap)
         qp.drawPixmap(QRect(0, 0, 600, 600), pixmap)
 
-
-
     def buttonClicked(self):
-        print(self.ct)
-        #print(self.lista)
-
-
-        #newL=[1,2,3,4,5,6,7]
-        #for i in newL:
-        #    newL.append(66)
-
-        #print (self.i.text())
-
-
-
-
-      # C_seriales=range(self.ct)
-        #print(self.i.text())
+        C_seriales=(self.ct)
+        #ce=int(input("cantidad de equipos ?=:"))
+        cadena="cadena"
+        Base.equiposE=range(C_seriales)
+        Base.ne=C_seriales
+        if (Base.ne>12):
+            N_P=("1/2")
+        else:
+            N_P=("1/1")
+        nombre_archivo=(str(a.year)+b+str(a.day)+"-ST-001"+".pdf")
 
 
 
 
-        """for i in seriales:
-            print(self.i.text())"""
+
+        dos=Base(nombre_archivo,N_P,str(Base.ne),hora,dia,cadena,str("luis"))
+        dos.invocarPdf()
+        startfile(nombre_archivo)
+
+        C_seriales=range(self.ct)
+        for i in (C_seriales):
+            print(self.lista[i].text())
+
+
+
+
 
 
 
@@ -119,33 +122,33 @@ class Ventana(QMainWindow):
         return cantidadE
 
     def capturarValores(self):
-        #print(self.cadena.text())
-        #print(self.cadena2.text())
-        #print(self.cadena3.text())
-        #print(self.cadena4.text())
-        #print(self.cadena5.text())
+        """print(self.cadena.text())
+        print(self.cadena2.text())
+        print(self.cadena3.text())
+        print(self.cadena4.text())
+        print(self.cadena5.text())"""
 
         if self.validar_cadena():
             seriales=range(self.validar_cantidadE())
-            self.dialogo.resize(600/2,650)
-
-
-
+            self.dialogo.resize(300,650)
+            self.dialogo.lista = []
             for i in seriales:
                 i+=1
-                self.dialogo.lista = []
+
                 self.dialogo.i=QLineEdit(self.dialogo)
                 self.dialogo.i.move(15,25*i)
                 self.dialogo.i.resize(130,30)
                 self.dialogo.i.setPlaceholderText("serial: "+str(i))
                 self.dialogo.i.setMaxLength(16)
-                #print(self.dialogo.i)
                 self.dialogo.lista.append(self.dialogo.i)
-                print(self.dialogo.lista)
 
 
+                #print(self.dialogo.i)
 
-            print(self.dialogo.lista)
+                #print(self.dialogo.lista)
+
+            #print("desde qui")
+            #print(self.dialogo.lista)
             self.dialogo.ct=i
             self.dialogo.exec_()
 
