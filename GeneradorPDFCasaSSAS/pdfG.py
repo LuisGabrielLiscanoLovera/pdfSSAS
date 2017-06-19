@@ -27,7 +27,7 @@ class Base:
     ne=0
     equiposE=0
 
-    def __init__(self,nombreA,np,ne,h,d,cadena,serialU):
+    def __init__(self,nombreA,np,ne,h,d,cadena,ep,ciep,tl,tecnico,cit,serialU):
         #self.color=cl
 
         self.nombre_archivo=nombreA
@@ -36,7 +36,14 @@ class Base:
         self.hora=h
         self.dia=d
         self.cadena=cadena
+        self.ep=ep
+        self.ciep=ciep
+        self.tl=tl
+        self.tecnico=tecnico
+        self.cit=cit
+
         self.serialU=serialU
+
 
 
     def invocarPdf(self):
@@ -164,8 +171,8 @@ class Base:
         c.drawString(35,285,"MEN:Memoria  TAR:Tarjeta  LIC:Licencia  CAMBIO: Cambio de equipo HICC")
         #recivo
         c.drawString(230,265,"RECEPCION DEL EQUIPO PARA REVISIÓN")
-        c.drawString(35,243,"Entregado por:    Nombre y Apellido:  _________________                              Recibido por:    Nombre y apellido:  _______________")
-        c.drawString(35,223,"Cédula:  _______________         Telf:_________________                              Cédula:  _______________       Telf:______________")
+        c.drawString(35,243,"Entregado por:    Nombre y Apellido:           %s                                    Recibido por:    Nombre y apellido:      %s"%(self.ep,self.tecnico))
+        c.drawString(35,223,"Cédula:        %s             Telf:            %s                                              Cédula:       %s       Telf:  0212-2404521"%(self.ciep,self.tl,self.cit))
         c.drawString(35,203,"Fecha:  "+self.dia)
         c.drawString(346,203,"Fecha:  "+self.dia)
         c.drawString(35,185,"Hora:    "+self.hora)
@@ -189,8 +196,8 @@ class Base:
        c.drawString(35,598-i,""+str(round((i/15)+1)))
        c.drawString(60,598-i,"HICC")
        #c.drawString(102,598-i,"GWRHICC0000"+input("serial 1:"))
-
        c.drawString(102,598-i,self.serialU)
+
        if (i==165):
          break
       if (self.ne>12):

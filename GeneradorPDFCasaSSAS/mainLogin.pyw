@@ -42,7 +42,10 @@ class Dialogo(QDialog):
     def buttonClicked(self):
         C_seriales=(self.ct)
         #ce=int(input("cantidad de equipos ?=:"))
-        cadena="cadena"
+        #print(self.cadena4)
+
+
+
         Base.equiposE=range(C_seriales)
         Base.ne=C_seriales
         if (Base.ne>12):
@@ -51,17 +54,25 @@ class Dialogo(QDialog):
             N_P=("1/1")
         nombre_archivo=(str(a.year)+b+str(a.day)+"-ST-001"+".pdf")
 
+        C_seriales=range(self.ct)
+        self.seriales=[]
+        for i in (C_seriales):
+            #print(self.lista[i].text())
+            self.seriales.append(self.lista[i].text())
 
-
-
-
-        dos=Base(nombre_archivo,N_P,str(Base.ne),hora,dia,cadena,str("luis"))
+        dos=Base(nombre_archivo,N_P,str(Base.ne),hora,dia,self.cadena,self.cadena2,self.cadena3,self.cadena4,self.cadena5,self.cadena6,self.seriales[0])
         dos.invocarPdf()
+        print(self.seriales)
+     #   for x in (self.seriales):
+
+
+
+
+
+
+
         startfile(nombre_archivo)
 
-        C_seriales=range(self.ct)
-        for i in (C_seriales):
-            print(self.lista[i].text())
 
 
 
@@ -83,26 +94,18 @@ class Ventana(QMainWindow):
         uic.loadUi("ui/main.ui",self)
         self.cadena.setPlaceholderText("Cadena")
         self.setWindowIcon(QIcon("img/logoCasa.png"))
-
         #self.salir=QPushButton("salir",self)
         #self.salir.move(0,50)
-
         self.setWindowTitle("Generador de Nota Servicio Tecnico SSAS ")
-        self.resize(420,315)
-        self.setMinimumSize(420,315)
-        self.setMaximumSize(420,315)
+        self.resize(420,355)
+        self.setMinimumSize(420,355)
+        self.setMaximumSize(420,355)
         self.dialogo=Dialogo()
         self.cantidadE.valueChanged.connect(self.validar_cantidadE)
         self.cadena.textChanged.connect(self.validar_cadena)
-
         #self.salir.clicked.connect(self.close)
-
         self.boton.clicked.connect(self.capturarValores )
-        #self.boton.clicked.connect(QCoreApplication.instance().quit)
-
-
-
-
+        self.boton.clicked.connect(QCoreApplication.instance().quit)
 
     def validar_cadena(self):
         cadena=self.cadena.text()
@@ -122,19 +125,20 @@ class Ventana(QMainWindow):
         return cantidadE
 
     def capturarValores(self):
-        """print(self.cadena.text())
-        print(self.cadena2.text())
-        print(self.cadena3.text())
-        print(self.cadena4.text())
-        print(self.cadena5.text())"""
+        self.dialogo.cadena=self.cadena.text()#cadena
+        self.dialogo.cadena2=self.cadena2.text()#ntregado por
+        self.dialogo.cadena3=self.cadena3.text()#cedula etregado
+        self.dialogo.cadena4=self.cadena4.text()#telefono entregado
+        self.dialogo.cadena5=self.cadena5.text()#recvido por tecnico
+        self.dialogo.cadena6=self.cadena6.text()#cedula tecnico
 
         if self.validar_cadena():
             seriales=range(self.validar_cantidadE())
             self.dialogo.resize(300,650)
             self.dialogo.lista = []
+
             for i in seriales:
                 i+=1
-
                 self.dialogo.i=QLineEdit(self.dialogo)
                 self.dialogo.i.move(15,25*i)
                 self.dialogo.i.resize(130,30)

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>410</width>
-    <height>360</height>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -76,8 +76,8 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QPushButton" name="boton">
     <property name="geometry">
      <rect>
-      <x>47</x>
-      <y>270</y>
+      <x>50</x>
+      <y>310</y>
       <width>331</width>
       <height>21</height>
      </rect>
@@ -92,8 +92,8 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>34</x>
-      <y>135</y>
+      <x>31</x>
+      <y>136</y>
       <width>153</width>
       <height>24</height>
      </rect>
@@ -105,10 +105,10 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>225</y>
-      <width>111</width>
-      <height>31</height>
+      <x>31</x>
+      <y>240</y>
+      <width>94</width>
+      <height>24</height>
      </rect>
     </property>
     <property name="text">
@@ -118,8 +118,8 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>34</x>
-      <y>165</y>
+      <x>31</x>
+      <y>170</y>
       <width>81</width>
       <height>24</height>
      </rect>
@@ -131,8 +131,8 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>34</x>
-      <y>195</y>
+      <x>31</x>
+      <y>200</y>
       <width>93</width>
       <height>24</height>
      </rect>
@@ -141,44 +141,16 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
      <string>telefono</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>205</x>
-      <y>106</y>
+      <x>206</x>
+      <y>107</y>
       <width>182</width>
       <height>156</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLineEdit" name="cadena">
-       <property name="toolTip">
-        <string/>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhHiddenText</set>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="maxLength">
-        <number>32767</number>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-       <property name="placeholderText">
-        <string extracomment="cadena"/>
-       </property>
-       <property name="cursorMoveStyle">
-        <enum>Qt::VisualMoveStyle</enum>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QLineEdit" name="cadena2">
        <property name="alignment">
@@ -219,6 +191,34 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
        </property>
       </widget>
      </item>
+     <item row="0" column="0">
+      <widget class="QLineEdit" name="cadena">
+       <property name="toolTip">
+        <string/>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhHiddenText</set>
+       </property>
+       <property name="text">
+        <string>unicasa</string>
+       </property>
+       <property name="maxLength">
+        <number>32767</number>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string extracomment="cadena"/>
+       </property>
+       <property name="cursorMoveStyle">
+        <enum>Qt::VisualMoveStyle</enum>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QSpinBox" name="cantidadE">
@@ -231,7 +231,7 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
      </rect>
     </property>
     <property name="minimum">
-     <number>1</number>
+     <number>3</number>
     </property>
     <property name="maximum">
      <number>24</number>
@@ -241,7 +241,7 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
     <property name="geometry">
      <rect>
       <x>34</x>
-      <y>225</y>
+      <y>235</y>
       <width>20</width>
       <height>24</height>
      </rect>
@@ -253,9 +253,9 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>34</x>
-      <y>105</y>
-      <width>161</width>
+      <x>31</x>
+      <y>106</y>
+      <width>87</width>
       <height>24</height>
      </rect>
     </property>
@@ -269,8 +269,8 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>34</x>
-      <y>75</y>
+      <x>31</x>
+      <y>76</y>
       <width>202</width>
       <height>24</height>
      </rect>
@@ -280,6 +280,56 @@ QPushButton:hover{color:#fff;background-color:black;border-radius: 4px;
     </property>
     <property name="text">
      <string>Cantidad de equipos</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>31</x>
+      <y>270</y>
+      <width>147</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhHiddenText</set>
+    </property>
+    <property name="text">
+     <string>cedula Resivido</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="cadena6">
+    <property name="geometry">
+     <rect>
+      <x>206</x>
+      <y>269</y>
+      <width>174</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhHiddenText</set>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>32767</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="placeholderText">
+     <string extracomment="cadena"/>
+    </property>
+    <property name="cursorMoveStyle">
+     <enum>Qt::VisualMoveStyle</enum>
     </property>
    </widget>
   </widget>
